@@ -15,7 +15,7 @@ An implementation of the "Cartas" logic problem from the Brazilian Computing Oly
 - **Approach:** Single-pass array traversal with state counters to ensure O(n) efficiency.
 - **Logic:** Compares adjacent elements to validate the global state of the sequence.
 
-## 🛠️ Skills & Technologies
+## Skills & Technologies
 - **Language:** Java (17+)
 - **Concepts:** Backtracking, Recursion, Array Manipulation, and Logic Optimization.
 - **Focus:** Clean code and efficient algorithm design.
