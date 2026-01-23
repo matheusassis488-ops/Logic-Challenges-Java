@@ -1,0 +1,67 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class BacktrackSimplePassword {
+
+    public static void main(String[] args) {
+        String password = "DCA";
+        String found = "";
+        int index = 0;
+        
+        char[] c = {'A', 'B', 'C', 'D'};
+        
+        List<List<Character>> allPermutations = permutations(c);
+        
+        System.out.println("NÚMERO TOTAL DE POSSIBILIDADES: " + allPermutations.size() + "\n");
+
+        for (List<Character> list : allPermutations) {
+            index++;
+            
+            StringBuilder sb = new StringBuilder();
+            for (Character ch : list) {
+                sb.append(ch);
+            }
+            String attempt = sb.toString();
+
+            System.out.println("POSSIBILIDADE " + index + ": " + attempt);
+            
+            if (attempt.equals(password)) {
+                found = attempt;
+            }
+        }
+        
+        System.out.println();
+        if (found.length() != 0) {
+            System.out.println("SENHA ENCONTRADA COM SUCESSO: " + found);
+        } else {
+            System.out.println("SENHA NÃO ENCONTRADA.");
+        }
+    } 
+
+    
+    public static List<List<Character>> permutations(char[] c) {
+        List<List<Character>> res = new ArrayList<>();
+        backtracking(c, res, new ArrayList<>(), new boolean[c.length]);
+        return res;
+    }
+
+    
+    private static void backtracking(char[] chars, List<List<Character>> res, List<Character> current, boolean[] visited) {
+        if (current.size() == 3) {
+            res.add(new ArrayList<>(current));
+            return;
+        }
+
+        for (int i = 0; i < chars.length; i++) {
+            if (!visited[i]) {
+                visited[i] = true;           
+                current.add(chars[i]);       
+                
+                backtracking(chars, res, current, visited); 
+                
+                current.remove(current.size() - 1);
+                visited[i] = false;
+            }
+        }
+    }
+}
